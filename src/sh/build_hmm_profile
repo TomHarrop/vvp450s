@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+outdir="output/hmm"
+
+hmmbuild -n "apisP450" \
+    -o "${outdir}/hmmbuild.out" \
+    --amino \
+    --cpu 8 \
+    "${outdir}/apisP450.hmm" \
+    "output/faa/apis_p450_trimmed.faa"

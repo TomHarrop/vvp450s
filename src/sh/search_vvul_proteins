@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+outdir="output/hmm"
+
+hmmsearch --cpu 8 \
+    -o "${outdir}/hmm.output" \
+    -A "${outdir}/all_hits" \
+    --tblout "${outdir}/seq_hits.tab" \
+    --domtblout "${outdir}/dom_hits.tab" \
+    --pfamtblout "${outdir}/pfam_hits" \
+    "${outdir}/apisP450.hmm" \
+    "data/waspass.all.maker.proteins.vvul.fasta"

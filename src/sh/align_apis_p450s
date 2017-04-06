@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+trimal="bin/trimal/trimal"
+
+# align with clustalo
+clustalo --threads=8 \
+    --full --force \
+    --outfmt=fa \
+    -i "output/fa/apis_p450.fa" \
+    --outfile="output/faa/apis_p450.faa"
+
+# trim with trimal
+"${trimal}" -in "output/faa/apis_p450.faa" \
+    -out "output/faa/apis_p450_trimmed.faa" \
+    -fasta \
+    -gappyout \
+
+# record logs
+metadata_file="output/faa/METADATA.csv"
+cat <<- _EOF_ > "${metadata_file}"
+    Script,${0}
+    branch,$(git rev-parse --abbrev-ref HEAD)
+    hash,$(git rev-parse HEAD)
+    date,$(date +%F)
+    trimal,$("${trimal}" --version 2>&1 | sed '2q;d')
+    clustalo,$(clustalo --version)
+_EOF_
+
+
