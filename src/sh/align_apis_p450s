@@ -13,7 +13,7 @@ clustalo --threads=8 \
 "${trimal}" -in "output/faa/apis_p450.faa" \
     -out "output/faa/apis_p450_trimmed.faa" \
     -fasta \
-    -gappyout \
+    -gappyout
 
 # record logs
 metadata_file="output/faa/METADATA.csv"
